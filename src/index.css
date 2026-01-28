@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+
+@layer components {
+  .nav-link {
+    @apply flex items-center gap-2 px-3 py-2 text-[13px] font-bold transition-all duration-300 relative rounded-lg;
+  }
+
+  .nav-link-active {
+    @apply text-blue-600 bg-blue-50/50;
+  }
+
+  .nav-link-inactive {
+    @apply text-slate-600 hover:text-blue-600 hover:bg-slate-50;
+  }
+
+  /* Mobile Drawer Link */
+  .mobile-link {
+    @apply flex items-center gap-4 text-base font-bold text-slate-700 transition-all duration-300 px-4 py-3 rounded-2xl;
+  }
+
+  .mobile-link-active {
+    @apply text-blue-600 bg-blue-50/50;
+  }
+}
