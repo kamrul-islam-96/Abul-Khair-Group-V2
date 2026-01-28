@@ -31,6 +31,7 @@ export const Navbar = () => {
         "brands",
         "tvc",
         "gallery",
+        "about-us",
       ];
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -87,13 +88,13 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-[60] transition-all duration-500 ${
+        className={`fixed top-0 w-full z-60 transition-all duration-500 ${
           isScrolled
             ? "py-3 bg-white/80 backdrop-blur-xl shadow-lg"
             : "py-6 bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="container mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2 group">
             <img
@@ -120,7 +121,7 @@ export const Navbar = () => {
             <div className="relative group px-1">
               <a
                 href="#about-us"
-                className={`nav-link flex items-center gap-1 ${aboutLinks.some((al) => activeSection === al.id) ? "text-blue-600" : "text-slate-600"}`}
+                className={`nav-link flex items-center gap-1 ${aboutLinks.some((al) => activeSection === al.id) ? "nav-link-active" : "nav-link-inactive"}`}
               >
                 <Info size={16} /> About Us{" "}
                 <ChevronDown
@@ -172,12 +173,12 @@ export const Navbar = () => {
 
       {/* --- Mobile Drawer Menu --- */}
       <div
-        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[70] transition-opacity duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-70 transition-opacity duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={() => setIsOpen(false)}
       />
 
       <div
-        className={`fixed top-0 right-0 h-full w-[62.5%] bg-white z-[80] shadow-[-20px_0_50px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 h-full w-[62.5%] bg-white z-80 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex flex-col h-full p-6 overflow-y-auto">
           {/* Header */}
