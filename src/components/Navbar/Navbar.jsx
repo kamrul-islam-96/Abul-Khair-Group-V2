@@ -63,24 +63,21 @@ export const Navbar = () => {
   ];
 
   const mainLinks = [
-    { name: "Home", id: "home", href: "#home", icon: <Home size={18} /> },
+    { name: "Home", id: "home", icon: <Home size={18} /> },
     {
       name: "Portfolio",
       id: "business-portfolio",
-      href: "business-portfolio",
       icon: <Briefcase size={18} />,
     },
     {
       name: "All Brands",
-      id: "brands",
-      href: "brands",
+      id: "all-brands",
       icon: <Layers size={18} />,
     },
     { name: "TVC", id: "tvc", href: "tvc", icon: <Video size={18} /> },
     {
       name: "Gallery",
       id: "gallery",
-      href: "gallery",
       icon: <ImageIcon size={18} />,
     },
   ];
@@ -303,14 +300,26 @@ export const Navbar = () => {
 
             {/* Other Main Links */}
             {mainLinks.slice(1).map((link) => (
-              <a
+              // <a
+              //   key={link.id}
+              //   href={link.href}
+              //   onClick={() => setIsOpen(false)}
+              //   className={`mobile-link ${activeSection === link.id ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+              // >
+              //   {link.icon} {link.name}
+              // </a>
+              <button
+              onClick={() => {
+                const element = document.getElementById(link.id);
+                element?.scrollIntoView({ behavior: "smooth" });
+                setIsOpen(false)
+              }}
                 key={link.id}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
+                // onClick={() => setIsOpen(false)}
                 className={`mobile-link ${activeSection === link.id ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
               >
                 {link.icon} {link.name}
-              </a>
+              </button>
             ))}
           </div>
 
