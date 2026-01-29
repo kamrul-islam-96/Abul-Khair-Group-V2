@@ -67,20 +67,20 @@ export const Navbar = () => {
     {
       name: "Portfolio",
       id: "business-portfolio",
-      href: "#business-portfolio",
+      href: "business-portfolio",
       icon: <Briefcase size={18} />,
     },
     {
       name: "All Brands",
       id: "brands",
-      href: "#brands",
+      href: "brands",
       icon: <Layers size={18} />,
     },
-    { name: "TVC", id: "tvc", href: "#tvc", icon: <Video size={18} /> },
+    { name: "TVC", id: "tvc", href: "tvc", icon: <Video size={18} /> },
     {
       name: "Gallery",
       id: "gallery",
-      href: "#gallery",
+      href: "gallery",
       icon: <ImageIcon size={18} />,
     },
   ];
@@ -111,7 +111,7 @@ export const Navbar = () => {
           <div className="hidden lg:flex items-center gap-1">
             {/* Home Link */}
             <a
-              href="#home"
+              href="/"
               className={`nav-link ${activeSection === "home" ? "nav-link-active" : "nav-link-inactive"}`}
             >
               <Home size={16} /> Home
@@ -119,7 +119,7 @@ export const Navbar = () => {
 
             {/* About Dropdown (Desktop) */}
             <div className="relative group px-1">
-              <a
+              {/* <a
                 href="#about-us"
                 className={`nav-link flex items-center gap-1 ${aboutLinks.some((al) => activeSection === al.id) ? "nav-link-active" : "nav-link-inactive"}`}
               >
@@ -128,35 +128,77 @@ export const Navbar = () => {
                   size={14}
                   className="group-hover:rotate-180 transition-transform"
                 />
-              </a>
+              </a> */}
+              <button
+                onClick={() => {
+                  const element = document.getElementById("about-us");
+                  element?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`nav-link flex items-center gap-1 cursor-pointer ${aboutLinks.some((al) => activeSection === al.id) ? "nav-link-active" : "nav-link-inactive"}`}
+              >
+                <Info size={16} /> About Us{" "}
+                <ChevronDown
+                  size={14}
+                  className="group-hover:rotate-180 transition-transform"
+                />
+              </button>
               <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                 {aboutLinks.map((sub) => (
-                  <a
+                  // <a
+                  //   key={sub.id}
+                  //   href={`#${sub.id}`}
+                  //   className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors"
+                  // >
+                  //   <span className="text-slate-400">{sub.icon}</span>
+                  //   <span className="text-sm font-bold text-slate-700">
+                  //     {sub.title}
+                  //   </span>
+                  // </a>
+                  <button
+                    onClick={() => {
+                      const element = document.getElementById(sub.id);
+                      element?.scrollIntoView({ behavior: "smooth" });
+                    }}
                     key={sub.id}
-                    href={`#${sub.id}`}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors"
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors cursor-pointer"
                   >
                     <span className="text-slate-400">{sub.icon}</span>
                     <span className="text-sm font-bold text-slate-700">
                       {sub.title}
                     </span>
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
 
             {/* Other Main Links */}
             {mainLinks.slice(1).map((link) => (
-              <a
+              // <a
+              //   key={link.id}
+              //   href={link.href}
+              //   className={`nav-link ${activeSection === link.id ? "nav-link-active" : "nav-link-inactive"}`}
+              // >
+              //   {link.icon} {link.name}
+              // </a>
+              <button
+                onClick={() => {
+                  const element = document.getElementById(link.id);
+                  element?.scrollIntoView({ behavior: "smooth" });
+                }}
                 key={link.id}
-                href={link.href}
-                className={`nav-link ${activeSection === link.id ? "nav-link-active" : "nav-link-inactive"}`}
+                className={`nav-link cursor-pointer ${activeSection === link.id ? "nav-link-active" : "nav-link-inactive"}`}
               >
                 {link.icon} {link.name}
-              </a>
+              </button>
             ))}
 
-            <button className="ml-4 bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-blue-600 hover:shadow-blue-200 transition-all active:scale-95 shadow-lg">
+            <button
+              onClick={() => {
+                const element = document.getElementById('contact-us');
+                element?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="ml-4 bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-blue-600 hover:shadow-blue-200 transition-all active:scale-95 shadow-lg"
+            >
               Get Started <ArrowUpRight size={16} />
             </button>
           </div>
