@@ -1,3 +1,320 @@
+// import React, { useState, useEffect } from "react";
+// import {
+//   AlignRight,
+//   X,
+//   ChevronDown,
+//   Rocket,
+//   Users,
+//   Layout,
+//   Home,
+//   Briefcase,
+//   Layers,
+//   Video,
+//   Image as ImageIcon,
+//   ArrowUpRight,
+//   Info,
+// } from "lucide-react";
+// import logo from "../../assets/cropped-abul-khair-group-logo.png";
+
+// export const Navbar = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [isScrolled, setIsScrolled] = useState(false);
+//   const [activeSection, setActiveSection] = useState(false);
+//   const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setIsScrolled(window.scrollY > 20);
+//       const sections = [
+//         "home",
+//         "business-portfolio",
+//         "brands",
+//         "tvc",
+//         "gallery",
+//         "about-us",
+//       ];
+//       for (const section of sections) {
+//         const element = document.getElementById(section);
+//         if (element && window.scrollY >= element.offsetTop - 120) {
+//           setActiveSection(section);
+//         }
+//       }
+//     };
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   useEffect(() => {
+//     document.body.style.overflow = isOpen ? "hidden" : "unset";
+//   }, [isOpen]);
+
+//   const aboutLinks = [
+//     { title: "Founder", id: "founder", icon: <Layout size={16} /> },
+//     {
+//       title: "Mission & Values",
+//       id: "mission-values",
+//       icon: <Rocket size={16} />,
+//     },
+//     {
+//       title: "Board of Directors",
+//       id: "board-of-directors",
+//       icon: <Users size={16} />,
+//     },
+//   ];
+
+//   const mainLinks = [
+//     { name: "Home", id: "home", icon: <Home size={18} /> },
+//     {
+//       name: "Portfolio",
+//       id: "business-portfolio",
+//       icon: <Briefcase size={18} />,
+//     },
+//     {
+//       name: "All Brands",
+//       id: "all-brands",
+//       icon: <Layers size={18} />,
+//     },
+//     { name: "TVC", id: "tvc", icon: <Video size={18} /> },
+//     {
+//       name: "Gallery",
+//       id: "gallery",
+//       icon: <ImageIcon size={18} />,
+//     },
+//   ];
+
+//   return (
+//     <>
+//       <nav
+//         className={`fixed top-0 w-full z-60 transition-all duration-500 ${
+//           isScrolled
+//             ? "py-3 bg-white/80 backdrop-blur-xl shadow-lg"
+//             : "py-6 bg-transparent"
+//         }`}
+//       >
+//         <div className="container mx-auto px-6 flex justify-between items-center">
+//           {/* Logo */}
+//           <a href="#home" className="flex items-center gap-2 group">
+//             <img
+//               src={logo}
+//               alt="AKG"
+//               className="w-10 h-10 object-contain group-hover:rotate-12 transition-transform duration-300"
+//             />
+//             <span className="text-2xl font-black text-slate-900 tracking-tighter">
+//               AKG<span className="text-blue-600">.</span>
+//             </span>
+//           </a>
+
+//           {/* Desktop Links */}
+//           <div className="hidden lg:flex items-center gap-1">
+//             {/* Home Link */}
+//             <a
+//               href="/"
+//               className={`nav-link ${activeSection === "home" ? "nav-link-active" : "nav-link-inactive"}`}
+//             >
+//               <Home size={16} /> Home
+//             </a>
+
+//             {/* About Dropdown (Desktop) */}
+//             <div className="relative group px-1">
+//               <button
+//                 onClick={() => {
+//                   const element = document.getElementById("about-us");
+//                   element?.scrollIntoView({ behavior: "smooth" });
+//                 }}
+//                 className={`nav-link flex items-center gap-1 cursor-pointer ${aboutLinks.some((al) => activeSection === al.id) ? "nav-link-active" : "nav-link-inactive"}`}
+//               >
+//                 <Info size={16} /> About Us{" "}
+//                 <ChevronDown
+//                   size={14}
+//                   className="group-hover:rotate-180 transition-transform"
+//                 />
+//               </button>
+//               <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+//                 {aboutLinks.map((sub) => (
+//                   <button
+//                     onClick={() => {
+//                       const element = document.getElementById(sub.id);
+//                       element?.scrollIntoView({ behavior: "smooth" });
+//                     }}
+//                     key={sub.id}
+//                     className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors cursor-pointer"
+//                   >
+//                     <span className="text-slate-400">{sub.icon}</span>
+//                     <span className="text-sm font-bold text-slate-700">
+//                       {sub.title}
+//                     </span>
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+
+//             {/* Other Main Links */}
+//             {mainLinks.slice(1).map((link) => (
+//               <button
+//                 onClick={() => {
+//                   const element = document.getElementById(link.id);
+//                   element?.scrollIntoView({ behavior: "smooth" });
+//                 }}
+//                 key={link.id}
+//                 className={`nav-link cursor-pointer ${activeSection === link.id ? "nav-link-active" : "nav-link-inactive"}`}
+//               >
+//                 {link.icon} {link.name}
+//               </button>
+//             ))}
+
+//             <button
+//               onClick={() => {
+//                 const element = document.getElementById("contact-us");
+//                 element?.scrollIntoView({ behavior: "smooth" });
+//               }}
+//               className="ml-4 bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-blue-600 hover:shadow-blue-200 transition-all active:scale-95 shadow-lg"
+//             >
+//               Get Started <ArrowUpRight size={16} />
+//             </button>
+//           </div>
+
+//           {/* Mobile Toggle Button */}
+//           <button
+//             className="lg:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
+//             onClick={() => setIsOpen(true)}
+//           >
+//             <AlignRight size={30} />
+//           </button>
+//         </div>
+//       </nav>
+
+//       {/* --- Mobile Drawer Menu --- */}
+//       <div
+//         className={`fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-70 transition-opacity duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+//         onClick={() => setIsOpen(false)}
+//       />
+
+//       <div
+//         className={`fixed top-0 right-0 h-full w-[62.5%] bg-white z-80 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+//       >
+//         <div className="flex flex-col h-full p-6 overflow-y-auto">
+//           {/* Header */}
+//           <div className="flex justify-between items-center mb-8">
+//             <span className="text-xl font-black text-slate-900">
+//               Menu<span className="text-blue-600">.</span>
+//             </span>
+//             <button
+//               className="p-2 bg-slate-100 rounded-full text-slate-600"
+//               onClick={() => setIsOpen(false)}
+//             >
+//               <X size={20} />
+//             </button>
+//           </div>
+
+//           {/* Mobile Navigation Links */}
+//           <div className="flex flex-col gap-2">
+//             {/* Home */}
+//             <a
+//               href="/"
+//               onClick={() => setIsOpen(false)}
+//               className={`mobile-link ${activeSection === "home" ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+//             >
+//               <Home size={18} /> Home
+//             </a>
+
+//             {/* About Accordion (Mobile) */}
+//             <div className="flex flex-col">
+//               <div className="relative">
+//                 <a
+//                   onClick={() => {
+//                     const element = document.getElementById("about-us");
+//                     element?.scrollIntoView({ behavior: "smooth" });
+//                     setIsOpen(false);
+//                   }}
+//                   className={`mobile-link w-full justify-between ${aboutLinks.some((al) => activeSection === al.id) ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+//                 >
+//                   <div className="flex items-center gap-4">
+//                     <Info size={18} /> About Us
+//                   </div>
+//                 </a>
+//                 <button className="absolute top-4 right-4">
+//                   <ChevronDown
+//                     onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
+//                     size={18}
+//                     className={`text-slate-700 transition-transform duration-300 ${isMobileAboutOpen ? "rotate-180" : ""}`}
+//                   />
+//                 </button>
+//               </div>
+
+//               <div
+//                 className={`overflow-hidden transition-all duration-300 ${
+//                   isMobileAboutOpen
+//                     ? "max-h-60 opacity-100 mt-2"
+//                     : "max-h-0 opacity-0"
+//                 }`}
+//               >
+//                 {aboutLinks.map((sub) => (
+//                   <a
+//                     key={sub.id}
+//                     onClick={() => {
+//                       const element = document.getElementById(`${sub.id}`);
+//                       element?.scrollIntoView({ behavior: "smooth" });
+//                       setIsOpen(false);
+//                     }}
+//                     className={`flex items-center gap-3 pl-6 py-3 text-sm font-bold transition-all duration-300 rounded-xl ${
+//                       activeSection === sub.id
+//                         ? "text-blue-600 bg-blue-50/50"
+//                         : "text-slate-500 hover:text-blue-600"
+//                     }`}
+//                   >
+//                     <span
+//                       className={
+//                         activeSection === sub.id
+//                           ? "text-blue-600"
+//                           : "text-slate-400"
+//                       }
+//                     >
+//                       {sub.icon}
+//                     </span>
+//                     {sub.title}
+//                   </a>
+//                 ))}
+//               </div>
+//             </div>
+
+//             {/* Other Main Links */}
+//             {mainLinks.slice(1).map((link) => (
+//               <button
+//                 onClick={() => {
+//                   const element = document.getElementById(link.id);
+//                   element?.scrollIntoView({ behavior: "smooth" });
+//                   setIsOpen(false);
+//                 }}
+//                 key={link.id}
+//                 className={`mobile-link ${activeSection === link.id ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+//               >
+//                 {link.icon} {link.name}
+//               </button>
+//             ))}
+//           </div>
+
+//           {/* Footer */}
+//           <div className="mt-auto pt-6 border-t border-slate-100">
+//             <button
+//               onClick={() => {
+//                 const element = document.getElementById('contact-us');
+//                 element?.scrollIntoView({ behavior: "smooth" });
+//                 setIsOpen(false);
+//               }}
+//               className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-transform"
+//             >
+//               Get Started <ArrowUpRight size={20} />
+//             </button>
+//             <p className="text-center text-[10px] text-slate-400 mt-4 uppercase tracking-widest font-bold italic">
+//               Abul Khair Group
+//             </p>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
 import React, { useState, useEffect } from "react";
 import {
   AlignRight,
@@ -19,27 +336,42 @@ import logo from "../../assets/cropped-abul-khair-group-logo.png";
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false); // Mobile Accordion state
+  const [activeSection, setActiveSection] = useState("home"); // Default home
+  const [isMobileAboutOpen, setIsMobileAboutOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // all sectin id links
       const sections = [
         "home",
+        "about-us",
         "business-portfolio",
-        "brands",
+        "all-brands",
         "tvc",
         "gallery",
-        "about-us",
+        "founder",
+        "mission-values",
+        "board-of-directors",
+        "contact-us",
       ];
+
+      const scrollPosition = window.scrollY + 150; // Offset for detection
+
       for (const section of sections) {
         const element = document.getElementById(section);
-        if (element && window.scrollY >= element.offsetTop - 120) {
-          setActiveSection(section);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+          }
         }
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -69,31 +401,37 @@ export const Navbar = () => {
       id: "business-portfolio",
       icon: <Briefcase size={18} />,
     },
-    {
-      name: "All Brands",
-      id: "all-brands",
-      icon: <Layers size={18} />,
-    },
-    { name: "TVC", id: "tvc", href: "tvc", icon: <Video size={18} /> },
-    {
-      name: "Gallery",
-      id: "gallery",
-      icon: <ImageIcon size={18} />,
-    },
+    { name: "All Brands", id: "all-brands", icon: <Layers size={18} /> },
+    { name: "TVC", id: "tvc", icon: <Video size={18} /> },
+    { name: "Gallery", id: "gallery", icon: <ImageIcon size={18} /> },
   ];
+
+  // Smooth Scroll Function
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
+      setIsOpen(false);
+    }
+  };
 
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-60 transition-all duration-500 ${
-          isScrolled
-            ? "py-3 bg-white/80 backdrop-blur-xl shadow-lg"
-            : "py-6 bg-transparent"
-        }`}
+        className={`fixed top-0 w-full z-60 transition-all duration-500 ${isScrolled ? "py-3 bg-white/80 backdrop-blur-xl shadow-lg" : "py-6 bg-transparent"}`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group">
+          <button
+            onClick={() => scrollTo("home")}
+            className="flex items-center gap-2 group cursor-pointer"
+          >
             <img
               src={logo}
               alt="AKG"
@@ -102,87 +440,73 @@ export const Navbar = () => {
             <span className="text-2xl font-black text-slate-900 tracking-tighter">
               AKG<span className="text-blue-600">.</span>
             </span>
-          </a>
+          </button>
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-1">
-            {/* Home Link */}
-            <a
-              href="/"
-              className={`nav-link ${activeSection === "home" ? "nav-link-active" : "nav-link-inactive"}`}
+            <button
+              onClick={() => scrollTo("home")}
+              className={`nav-link cursor-pointer ${activeSection === "home" ? "nav-link-active" : "nav-link-inactive"}`}
             >
               <Home size={16} /> Home
-            </a>
+            </button>
 
-            {/* About Dropdown (Desktop) */}
+            {/* About Dropdown */}
             <div className="relative group px-1">
-              {/* <a
-                href="#about-us"
-                className={`nav-link flex items-center gap-1 ${aboutLinks.some((al) => activeSection === al.id) ? "nav-link-active" : "nav-link-inactive"}`}
-              >
-                <Info size={16} /> About Us{" "}
-                <ChevronDown
-                  size={14}
-                  className="group-hover:rotate-180 transition-transform"
-                />
-              </a> */}
               <button
-                onClick={() => {
-                  const element = document.getElementById("about-us");
-                  element?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`nav-link flex items-center gap-1 cursor-pointer ${aboutLinks.some((al) => activeSection === al.id) ? "nav-link-active" : "nav-link-inactive"}`}
+                onClick={() => scrollTo("about-us")}
+                className={`nav-link flex items-center gap-1 cursor-pointer transition-all ${
+                  activeSection === "about-us" ||
+                  aboutLinks.some((al) => activeSection === al.id)
+                    ? "nav-link-active"
+                    : "nav-link-inactive"
+                }`}
               >
-                <Info size={16} /> About Us{" "}
+                <Info size={16} />
+
+                <span>About Us</span>
+
                 <ChevronDown
                   size={14}
-                  className="group-hover:rotate-180 transition-transform"
+                  className="group-hover:rotate-180 transition-transform duration-300"
                 />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                {aboutLinks.map((sub) => (
-                  // <a
-                  //   key={sub.id}
-                  //   href={`#${sub.id}`}
-                  //   className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors"
-                  // >
-                  //   <span className="text-slate-400">{sub.icon}</span>
-                  //   <span className="text-sm font-bold text-slate-700">
-                  //     {sub.title}
-                  //   </span>
-                  // </a>
-                  <button
-                    onClick={() => {
-                      const element = document.getElementById(sub.id);
-                      element?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    key={sub.id}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors cursor-pointer"
-                  >
-                    <span className="text-slate-400">{sub.icon}</span>
-                    <span className="text-sm font-bold text-slate-700">
-                      {sub.title}
-                    </span>
-                  </button>
-                ))}
+
+              {/* Dropdown Menu */}
+
+              <div className="absolute top-full left-0 mt-2 w-60 bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
+                {aboutLinks.map((sub) => {
+                  const isSubActive = activeSection === sub.id;
+
+                  return (
+                    <button
+                      key={sub.id}
+                      onClick={() => scrollTo(sub.id)}
+                      className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 cursor-pointer mb-1 last:mb-0 ${
+                        isSubActive
+                          ? "bg-blue-50 text-blue-600 shadow-sm"
+                          : "hover:bg-slate-50 text-slate-700 hover:text-blue-600"
+                      }`}
+                    >
+                      <span
+                        className={`${isSubActive ? "text-blue-600" : "text-slate-400 transition-colors group-hover:text-blue-400"}`}
+                      >
+                        {sub.icon}
+                      </span>
+
+                      <span className="text-sm font-bold tracking-tight">
+                        {sub.title}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Other Main Links */}
             {mainLinks.slice(1).map((link) => (
-              // <a
-              //   key={link.id}
-              //   href={link.href}
-              //   className={`nav-link ${activeSection === link.id ? "nav-link-active" : "nav-link-inactive"}`}
-              // >
-              //   {link.icon} {link.name}
-              // </a>
               <button
-                onClick={() => {
-                  const element = document.getElementById(link.id);
-                  element?.scrollIntoView({ behavior: "smooth" });
-                }}
                 key={link.id}
+                onClick={() => scrollTo(link.id)}
                 className={`nav-link cursor-pointer ${activeSection === link.id ? "nav-link-active" : "nav-link-inactive"}`}
               >
                 {link.icon} {link.name}
@@ -190,17 +514,13 @@ export const Navbar = () => {
             ))}
 
             <button
-              onClick={() => {
-                const element = document.getElementById('contact-us');
-                element?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="ml-4 bg-slate-900 text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-blue-600 hover:shadow-blue-200 transition-all active:scale-95 shadow-lg"
+              onClick={() => scrollTo("contact-us")}
+              className={`ml-4 px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 transition-all active:scale-95 shadow-lg cursor-pointer ${activeSection === "contact-us" ? "bg-blue-600 text-white" : "bg-slate-900 text-white hover:bg-blue-600"}`}
             >
               Get Started <ArrowUpRight size={16} />
             </button>
           </div>
 
-          {/* Mobile Toggle Button */}
           <button
             className="lg:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
             onClick={() => setIsOpen(true)}
@@ -220,7 +540,6 @@ export const Navbar = () => {
         className={`fixed top-0 right-0 h-full w-[62.5%] bg-white z-80 shadow-[-20px_0_50px_rgba(0,0,0,0.1)] transition-transform duration-500 ease-out transform ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex flex-col h-full p-6 overflow-y-auto">
-          {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <span className="text-xl font-black text-slate-900">
               Menu<span className="text-blue-600">.</span>
@@ -232,39 +551,50 @@ export const Navbar = () => {
               <X size={20} />
             </button>
           </div>
-
-          {/* Mobile Navigation Links */}
           <div className="flex flex-col gap-2">
-            {/* Home */}
-            <a
-              href="#home"
-              onClick={() => setIsOpen(false)}
-              className={`mobile-link ${activeSection === "home" ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+            <button
+              onClick={() => scrollTo("home")}
+              className={`mobile-link cursor-pointer text-left ${activeSection === "home" ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
             >
               <Home size={18} /> Home
-            </a>
+            </button>
 
-            {/* About Accordion (Mobile) */}
             <div className="flex flex-col">
               <div className="relative">
-                <a
-                  href="#about-us"
-                  onClick={() => setIsOpen(false)}
-                  className={`mobile-link w-full justify-between ${aboutLinks.some((al) => activeSection === al.id) ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+                <button
+                  onClick={() => {
+                    scrollTo("about-us");
+                  }}
+                  className={`mobile-link w-full text-left cursor-pointer ${
+                    activeSection === "about-us" ||
+                    aboutLinks.some((al) => activeSection === al.id)
+                      ? "text-blue-600 bg-blue-50/80"
+                      : "text-slate-600 bg-slate-50"
+                  }`}
                 >
                   <div className="flex items-center gap-4">
                     <Info size={18} /> About Us
                   </div>
-                </a>
-                <button className="absolute top-4 right-4">
+                </button>
+
+                {/* Independent Dropdown Toggle Icon (Absolute Position) */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsMobileAboutOpen(!isMobileAboutOpen);
+                  }}
+                  className="absolute top-1/2 -translate-y-1/2 right-4 p-2 cursor-pointer"
+                >
                   <ChevronDown
-                    onClick={() => setIsMobileAboutOpen(!isMobileAboutOpen)}
                     size={18}
-                    className={`text-slate-700 transition-transform duration-300 ${isMobileAboutOpen ? "rotate-180" : ""}`}
+                    className={`text-slate-700 transition-transform duration-300 ${
+                      isMobileAboutOpen ? "rotate-180" : ""
+                    }`}
                   />
                 </button>
               </div>
 
+              {/* Sub Links Drawer */}
               <div
                 className={`overflow-hidden transition-all duration-300 ${
                   isMobileAboutOpen
@@ -273,11 +603,13 @@ export const Navbar = () => {
                 }`}
               >
                 {aboutLinks.map((sub) => (
-                  <a
+                  <button
                     key={sub.id}
-                    href={`#${sub.id}`}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-3 pl-6 py-3 text-sm font-bold transition-all duration-300 rounded-xl ${
+                    onClick={() => {
+                      scrollTo(sub.id);
+                      setIsOpen(false);
+                    }}
+                    className={`flex items-center gap-3 w-full pl-8 py-3 text-sm font-bold transition-all duration-300 rounded-xl cursor-pointer ${
                       activeSection === sub.id
                         ? "text-blue-600 bg-blue-50/50"
                         : "text-slate-500 hover:text-blue-600"
@@ -293,44 +625,28 @@ export const Navbar = () => {
                       {sub.icon}
                     </span>
                     {sub.title}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
 
-            {/* Other Main Links */}
             {mainLinks.slice(1).map((link) => (
-              // <a
-              //   key={link.id}
-              //   href={link.href}
-              //   onClick={() => setIsOpen(false)}
-              //   className={`mobile-link ${activeSection === link.id ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
-              // >
-              //   {link.icon} {link.name}
-              // </a>
               <button
-              onClick={() => {
-                const element = document.getElementById(link.id);
-                element?.scrollIntoView({ behavior: "smooth" });
-                setIsOpen(false)
-              }}
                 key={link.id}
-                // onClick={() => setIsOpen(false)}
-                className={`mobile-link ${activeSection === link.id ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
+                onClick={() => scrollTo(link.id)}
+                className={`mobile-link cursor-pointer text-left ${activeSection === link.id ? "text-blue-600 bg-blue-50/80" : "text-slate-600 bg-slate-50"}`}
               >
                 {link.icon} {link.name}
               </button>
             ))}
           </div>
-
-          {/* Footer */}
           <div className="mt-auto pt-6 border-t border-slate-100">
-            <button className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-transform">
+            <button
+              onClick={() => scrollTo("contact-us")}
+              className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-transform cursor-pointer"
+            >
               Get Started <ArrowUpRight size={20} />
             </button>
-            <p className="text-center text-[10px] text-slate-400 mt-4 uppercase tracking-widest font-bold italic">
-              Abul Khair Group
-            </p>
           </div>
         </div>
       </div>
