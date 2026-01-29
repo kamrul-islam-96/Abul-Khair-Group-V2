@@ -9,6 +9,7 @@ import { BoardOfDirectors } from "./components/Board Of Directors/BoardOfDirecto
 import { BusinessPortfolio } from "./components/Business Portfolio/BusinessPortfolio";
 import { AllBrands } from "./components/All Brands/AllBrands";
 import { Tvc } from "./components/Tvc/Tvc";
+import { Gallery } from "./components/Gallery/Gallery";
 import { ContactUs } from "./components/Contact Us/ContactUs";
 
 
@@ -42,6 +43,9 @@ export const App = () => {
         </section>
         <section id="tvc">
           <Tvc />
+        </section>
+        <section id="gallery">
+          <Gallery />
         </section>
         <section id="contact-us">
           <ContactUs />

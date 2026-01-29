@@ -136,13 +136,6 @@ export const Tvc = () => {
           </div>
         </div>
       )}
-
-      {/* Footer Branding */}
-      <div className="py-20 text-center border-t border-white/5">
-        <p className="text-white/10 text-7xl md:text-9xl font-black uppercase tracking-tighter select-none">
-          AKG Media
-        </p>
-      </div>
     </div>
   );
 };
