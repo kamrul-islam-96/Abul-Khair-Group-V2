@@ -21,7 +21,7 @@ import relly from "../../assets/all-brands/Rally.png";
 import stella from "../../assets/all-brands/Stella.png";
 
 export const AllBrands = () => {
-  // Top Brands - Details সহ
+  // Top Brands - Details 
   const topBrands = [
     { img: Shahcement, name: "Shah Cement", desc: "World Record Holder" },
     { img: aks, name: "AKS TMT", desc: "Premium Long Steel" },
@@ -30,7 +30,7 @@ export const AllBrands = () => {
     { img: cowBrand, name: "Cow Brand", desc: "Legacy of 20+ Years" },
   ];
 
-  // All Brands লুপের জন্য (Top + Other সব একসাথে)
+  // All Brands 
   const allLogos = [
     Shahcement,
     aks,
@@ -53,14 +53,14 @@ export const AllBrands = () => {
   return (
     <div className="bg-white py-24 overflow-hidden">
       {/* 1. TOP BRANDS SECTION - Spotlight UI */}
-      <section className="container mx-auto px-6 mb-40">
+      <section className="container mx-auto px-6 mb-40 bg-slate-50">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 font-bold text-[10px] uppercase tracking-[0.3em] mb-4">
             <Award size={14} /> The Elite Selection
           </div>
           <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase">
             Top{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-400">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-400">
               Brands
             </span>
           </h2>
@@ -108,7 +108,7 @@ export const AllBrands = () => {
               </p>
             </div>
           </div>
-          <div className="hidden md:block h-[1px] flex-1 bg-slate-100 mx-10"></div>
+          <div className="hidden md:block h-px flex-1 bg-slate-100 mx-10"></div>
           <p className="text-slate-400 text-sm font-medium">
             Over 50+ Products across 8 Industries
           </p>
@@ -133,8 +133,8 @@ export const AllBrands = () => {
           </div>
 
           {/* Fade Edges */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+          <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent z-10"></div>
+          <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent z-10"></div>
         </div>
       </section>
     </div>

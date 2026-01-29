@@ -5,7 +5,6 @@ import abulKashem from "../../assets/board-of-directors/abul-kashem.jpg";
 import abuSayed from "../../assets/board-of-directors/abu-sayed.jpg";
 import shahShafiqul from "../../assets/board-of-directors/shah-shafiqul.jpg";
 
-
 const directors = [
   {
     name: "Mr. Abul Kashem",
@@ -51,8 +50,8 @@ export const BoardOfDirectors = () => {
           alt="Board Of Directors"
           className="w-full h-full object-cover grayscale contrast-125"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-        <div className="absolute bottom-12 left-0 w-full text-center">
+        <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+        <div className="absolute bottom-36 left-0 w-full text-center">
           <h1 className="text-white text-5xl md:text-8xl font-black tracking-tighter uppercase italic opacity-90">
             The Leadership
           </h1>
@@ -72,69 +71,98 @@ export const BoardOfDirectors = () => {
           </h2>
         </div>
 
-        <div className="space-y-32">
+        <div className="space-y-40 lg:space-y-56">
           {directors.map((person, index) => (
             <div
               key={index}
-              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
+              className={`flex flex-col lg:flex-row items-center gap-16 lg:gap-32 ${
+                index % 2 !== 0 ? "lg:flex-row-reverse" : ""
+              }`}
             >
-              {/* Image with Decorative Frame */}
-              <div className="relative w-full lg:w-5/12 group">
-                <div className="absolute -inset-4 bg-slate-100 rounded-[2rem] -z-10 group-hover:bg-blue-50 transition-colors duration-500"></div>
-                <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
-                  <img
-                    src={person.image}
-                    alt={person.name}
-                    className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-                {/* Floating Badge */}
-                <div className="absolute -bottom-6 -right-6 md:right-10 bg-blue-600 text-white p-6 rounded-xl shadow-xl max-w-[200px] hidden md:block">
-                  <p className="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-1">
-                    Key Focus
-                  </p>
-                  <p className="text-sm font-semibold leading-tight">
-                    {person.bio}
-                  </p>
+              {/* Image Section - Minimalist & Fixed Ratio */}
+              <div className="relative w-full lg:w-1/2 flex justify-center">
+                <div className="relative group max-w-95 w-full">
+                  {/* Decorative Back Elements */}
+                  <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-blue-600/30 rounded-tl-3xl"></div>
+                  <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-slate-200 rounded-br-3xl"></div>
+
+                  {/* Main Image Container - Fixed Aspect Ratio to handle low res */}
+                  <div className="relative aspect-3/4 overflow-hidden rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] bg-slate-50 border-8 border-white">
+                    <img
+                      src={person.image}
+                      alt={person.name}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+
+                    {/* Soft Overlay on Hover */}
+                    <div className="absolute inset-0 bg-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+
+                  {/* Floating Badge - Glassmorphism Style */}
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[85%] backdrop-blur-xl bg-white/80 p-6 rounded-2xl shadow-xl border border-white/50 text-center">
+                    <p className="text-blue-600 text-[10px] font-black uppercase tracking-[0.3em] mb-1">
+                      Strategy Focus
+                    </p>
+                    <p className="text-slate-800 text-sm font-bold leading-tight line-clamp-2">
+                      {person.bio}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Text Content */}
-              <div className="w-full lg:w-7/12">
+              {/* Text Content - Elegant Editorial Look */}
+              <div className="w-full lg:w-1/2 space-y-8">
                 <div className="relative">
-                  <span className="text-8xl font-black text-slate-50 absolute -top-16 -left-4 -z-10 select-none">
+                  {/* Large Background Number */}
+                  <span className="absolute -top-20 left-0 text-[12rem] font-black text-slate-100/60 -z-10 select-none leading-none">
                     0{index + 1}
                   </span>
-                  <h3 className="text-3xl md:text-5xl font-black text-slate-900 mb-2">
-                    {person.name}
-                  </h3>
-                  <p className="text-blue-600 text-lg font-bold tracking-widest uppercase mb-8">
-                    {person.position}
-                  </p>
-                  <div className="w-20 h-1 bg-slate-200 mb-8"></div>
-                  <p className="text-slate-600 text-lg md:text-xl leading-relaxed text-justify font-light italic lg:not-italic">
-                    {person.description}
-                  </p>
 
-                  {/* Signature or Quote placeholder */}
-                  <div className="mt-10 flex items-center gap-4">
-                    <div className="h-[1px] w-12 bg-slate-300"></div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400 font-sans">
-                      Abul Khair Group Leadership
-                    </span>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="h-0.5 w-8 bg-blue-600"></div>
+                      <span className="text-blue-600 font-black text-xs uppercase tracking-[0.4em]">
+                        Leadership
+                      </span>
+                    </div>
+                    <h3 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-tight">
+                      {person.name}
+                    </h3>
+                    <p className="text-slate-400 text-lg md:text-xl font-medium tracking-wide uppercase italic">
+                      {person.position}
+                    </p>
+                  </div>
+
+                  <div className="mt-10 relative">
+                    {/* Quote Mark Icon */}
+                    <div className="absolute -left-8 -top-4 opacity-10">
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V12C14.017 12.5523 13.5693 13 13.017 13H11.017V21H14.017ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56929 13 4.017 13H2.017V21H5.017Z" />
+                      </svg>
+                    </div>
+
+                    <p className="text-slate-600 text-lg md:text-xl leading-relaxed text-justify font-light border-l-4 border-slate-50 pl-6">
+                      {person.description}
+                    </p>
+                  </div>
+
+                  {/* Signature Placeholder / Bottom Branding */}
+                  <div className="pt-12 flex items-center gap-6">
+                    <div className="px-6 py-2 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
+                      AKG Executive Board
+                    </div>
+                    <div className="flex-1 h-px bg-slate-100"></div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-      </section>
-
-      {/* 3. Bottom Call to Action */}
-      <section className="bg-slate-950 py-20 text-center">
-        <h3 className="text-white/20 text-6xl md:text-9xl font-black tracking-tighter uppercase">
-          Legacy of Trust
-        </h3>
       </section>
     </div>
   );

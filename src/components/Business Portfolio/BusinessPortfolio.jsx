@@ -66,8 +66,16 @@ export const BusinessPortfolio = () => {
 
   return (
     <div className="w-full bg-white pb-24">
+      <div className="text-center space-y-4 pt-20 pb-4">
+        <h1 className="text-black text-5xl md:text-8xl font-black tracking-tighter uppercase italic">
+          Portfolio
+        </h1>
+        <p className="text-blue-400 font-bold tracking-[0.4em] uppercase text-xs md:text-sm">
+          Driving the National Economy
+        </p>
+      </div>
       {/* 1. Cinematic Video Header */}
-      <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden flex items-center justify-center">
+      <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden">
         <video
           autoPlay
           loop
@@ -77,15 +85,7 @@ export const BusinessPortfolio = () => {
         >
           <source src={businessPortfolio} type="video/mp4" />
         </video>
-        <div className="relative z-10 text-center space-y-4">
-          <h1 className="text-white text-5xl md:text-8xl font-black tracking-tighter uppercase italic">
-            Portfolio
-          </h1>
-          <p className="text-blue-400 font-bold tracking-[0.4em] uppercase text-xs md:text-sm">
-            Driving the National Economy
-          </p>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/20"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-black/20"></div>
       </section>
 
       {/* 2. Interactive Navigation Section */}
@@ -96,7 +96,7 @@ export const BusinessPortfolio = () => {
             <button
               key={sector.id}
               onClick={() => setActiveTab(sector)}
-              className={`flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 font-bold text-sm uppercase tracking-wider shadow-sm border ${
+              className={`flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 font-bold text-sm uppercase tracking-wider shadow-sm border cursor-pointer ${
                 activeTab.id === sector.id
                   ? "bg-blue-600 text-white border-blue-600 shadow-blue-200 scale-105"
                   : "bg-white text-slate-500 border-slate-100 hover:bg-slate-50"
