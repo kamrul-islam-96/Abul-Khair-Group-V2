@@ -21,7 +21,7 @@ export const Home = () => {
         <div className="relative z-10 container mx-auto px-6 flex items-center justify-between min-h-screen">
           <div className="flex flex-col">
             {/* Badge */}
-            <div className="mb-6 w-fit flex items-center gap-2 rounded-full bg-blue-500/20 px-4 py-1.5 backdrop-blur-md border border-blue-500/30">
+            <div className="mb-6 w-fit flex items-center gap-2 rounded-full bg-blue-500/20 px-4 py-1.5 mt-12 md:mt-0 backdrop-blur-md border border-blue-500/30">
               <span className="h-2 w-2 animate-pulse rounded-full bg-blue-400"></span>
               <span className="text-xs font-semibold uppercase tracking-widest text-blue-300">
                 Legacy of Excellence Since 1953
@@ -55,7 +55,7 @@ export const Home = () => {
           </div>
 
           <div>
-            <img src={logo} alt="" className="w-sm" />
+            <img src={logo} alt="" className="w-sm hidden md:block" />
           </div>
         </div>
       </div>
